@@ -21,6 +21,8 @@
   "homepage": "https://github.com/udhuong/crawl-puppeteer#readme",
   "dependencies": {
     "assert": "^2.0.0",
+    "node-fetch": "^3.2.9",
     "puppeteer": "^15.5.0"
-  }
+  },
+  "type": "module"
 }

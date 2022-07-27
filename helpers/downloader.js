@@ -1,33 +1,36 @@
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
+import fetch from "node-fetch";
+import https from 'https';
+import fs from 'fs';
 
-const downloadFile = (url, callback) => {
-    const filename = path.basename(url);
-    console.log(filename);
-    return false;
-    const req = https.get(url, res => {
-        const fileStream = fs.createWriteStream(filename);
-        res.pipe(fileStream);
+const downloadFile = (url, destination) => new Promise((resolve, reject) => {
+    const file = fs.createWriteStream(destination);
 
-        fileStream.on('error', err => {
-            console.log(err);
-        })
+    https.get(url, response => {
+        response.pipe(file);
 
-        fileStream.on('close', () => {
-            callback(filename);
-        })
+        file.on('finish', () => {
+            file.close(resolve(true));
+        });
+    }).on('error', error => {
+        fs.unlink(destination);
 
-        fileStream.on('finish', () => {
-            fileStream.close();
-            console.log('done!');
-        })
-    })
-
-    req.on('error', err => {
-        console.log(err);
+        reject(error.message);
     });
+});
+
+const saveImageToDisk = (url, filename) =>
+{
+    fetch(url)
+      .then(res => {
+          const dest = fs.createWriteStream(filename);
+          res.body.pipe(dest)
+      })
+      .catch((err) => {
+          console.log(err)
+      })
 }
+
 export {
-    downloadFile
+    downloadFile,
+    saveImageToDisk,
 }
