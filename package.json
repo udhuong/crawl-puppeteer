@@ -1,0 +1,26 @@
+{
+  "name": "crawl-puppeteer",
+  "version": "1.0.0",
+  "description": "crawl data",
+  "main": "target/nhaccuatui.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udhuong/crawl-puppeteer.git"
+  },
+  "keywords": [
+    "crawl"
+  ],
+  "author": "udhuong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udhuong/crawl-puppeteer/issues"
+  },
+  "homepage": "https://github.com/udhuong/crawl-puppeteer#readme",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "puppeteer": "^15.5.0"
+  }
+}
